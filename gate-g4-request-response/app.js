@@ -18,7 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 //   Hint:  res.render('form', { error: null });
 // ============================================================
 // YOUR CODE HERE
-
+app.get('/', (req, res) => {
+  res.render('form', { error: null });
+});
 
 // ============================================================
 // TODO 2: POST /greet
@@ -37,6 +39,16 @@ app.use(express.urlencoded({ extended: true }));
 // ============================================================
 // YOUR CODE HERE
 
+app.post('/greet', (req, res) => {
+  const { name } = req.body;
+
+  if (!name || name.trim() === '') {
+    res.render('form', { error: 'Please enter your name.' });
+    return;
+  } else {
+    res.render('greet', { name });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
