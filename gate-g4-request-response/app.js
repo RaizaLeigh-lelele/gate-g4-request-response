@@ -40,13 +40,13 @@ app.get('/', (req, res) => {
 // YOUR CODE HERE
 
 app.post('/greet', (req, res) => {
-  const { name } = req.body;
+  const { name } = req.body.name;
 
   if (!name || name.trim() === '') {
     res.render('form', { error: 'Please enter your name.' });
     return;
   } else {
-    res.render('greet', { name });
+    res.render('greet', { name: name.trim() });
   }
 });
 
